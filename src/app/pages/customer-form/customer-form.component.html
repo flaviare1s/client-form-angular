@@ -1,0 +1,22 @@
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+  <label>
+    Name:
+    <input type="text" formControlName="name" />
+  </label>
+  <div *ngIf="customerForm.get('name')?.invalid && customerForm.get('name')?.touched">
+    <small *ngIf="customerForm.get('name')?.errors?.['required']">Name is required.</small>
+    <small *ngIf="customerForm.get('name')?.errors?.['minlength']">Minimum 3 characters.</small>
+  </div>
+
+  <label>
+    Email:
+    <input type="email" formControlName="email" />
+  </label>
+  <div *ngIf="customerForm.get('email')?.invalid && customerForm.get('email')?.touched">
+    <small *ngIf="customerForm.get('email')?.errors?.['required']">Email is required.</small>
+    <small *ngIf="customerForm.get('email')?.errors?.['email']">Invalid email format.</small>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
