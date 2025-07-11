@@ -1,0 +1,125 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+  text-align: center;
+}
+
+form.p-fluid {
+  width: 100%;
+  margin: 1rem auto;
+  padding: 1rem 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  color: #444;
+
+  .p-field {
+    margin-bottom: 1.25rem;
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #555;
+      cursor: pointer;
+    }
+
+    input[pInputText],
+    p-inputMask,
+    p-datepicker,
+    p-select {
+      width: 100%;
+      border-radius: 6px !important;
+      border: 1.5px solid #aaa !important;
+      padding: 0.55rem 0.75rem !important;
+      font-size: 1rem !important;
+      background-color: #fff !important;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+      &:focus,
+      &:hover {
+        border-color: #888 !important;
+        box-shadow: 0 0 5px rgba(128, 128, 128, 0.3) !important;
+        outline: none !important;
+      }
+    }
+
+    ::ng-deep .p-select-list {
+      background-color: #fff !important;
+      border: 1px solid #aaa !important;
+      z-index: 10000 !important;
+      overflow: hidden;
+      padding: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18) !important;
+      margin-top: -5px;
+    }
+
+    ::ng-deep .p-datepicker-panel {
+      background-color: #fff !important;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18) !important;
+      border-radius: 8px !important;
+      z-index: 10000 !important;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    ::ng-deep .p-select-option {
+      padding: 8px 0 !important;
+    }
+
+    p-inputMask {
+      display: block;
+      margin-top: 0.15rem;
+      font-size: 1rem !important;
+      padding-left: 0.75rem !important;
+    }
+
+    small {
+      color: #a94442;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+      display: block;
+      font-weight: 500;
+    }
+  }
+
+  button[pButton] {
+    width: 100%;
+    background-color: #666 !important;
+    border: none !important;
+    color: #eee !important;
+    font-size: 1.1rem !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 8px !important;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #444 !important;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .container {
+    width: 550px;
+  }
+  form.p-fluid {
+    margin: 2rem auto;
+    padding: 1.5rem 2rem;
+
+    button[pButton] {
+      font-size: 1.2rem !important;
+      padding: 0.85rem 1.2rem !important;
+    }
+  }
+}

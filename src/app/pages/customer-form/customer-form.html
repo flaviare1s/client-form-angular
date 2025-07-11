@@ -1,0 +1,58 @@
+<div class="container">
+  <h2>Cadastro de Clientes</h2>
+  <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" class="p-fluid">
+
+    <div class="p-field">
+      <label for="name">Nome</label>
+      <input pInputText id="name" formControlName="name" />
+      <small *ngIf="customerForm.get('name')?.touched && customerForm.get('name')?.invalid">
+        Name is required (min 3 characters).
+      </small>
+    </div>
+
+    <div class="p-field">
+      <label for="email">Email</label>
+      <input pInputText id="email" type="email" formControlName="email" />
+      <small *ngIf="customerForm.get('email')?.touched && customerForm.get('email')?.invalid">
+        Valid email required.
+      </small>
+    </div>
+
+    <div class="p-field">
+      <label for="cpf">CPF</label>
+      <p-inputMask mask="999.999.999-99" formControlName="cpf"></p-inputMask>
+    </div>
+
+    <div class="p-field">
+      <label for="birthDate">Data de Nascimento</label>
+      <p-datepicker id="birthDate" formControlName="birthDate" showIcon dateFormat="dd/mm/yy"
+        [maxDate]="today"></p-datepicker>
+    </div>
+
+    <div class="p-field">
+      <label for="phone">Telefone</label>
+      <p-inputMask formControlName="phone" mask="(99) 99999-9999"></p-inputMask>
+    </div>
+
+    <div class="p-field">
+      <label for="contactType">Tipo de Contato</label>
+      <p-select formControlName="contactType" [options]="['Whatsapp', 'Fixo', 'Residencial']"
+        placeholder="Selecione"></p-select>
+    </div>
+
+    <div class="p-field">
+      <label for="country">País</label>
+      <p-select id="country" formControlName="country" [options]="countries" optionLabel="name" optionValue="code"
+        placeholder="Selecione o país"></p-select>
+    </div>
+
+    <div class="p-field">
+      <label for="state">Estado</label>
+      <p-select id="state" formControlName="state" [options]="statesList" optionLabel="name" optionValue="code"
+        placeholder="Selecione o estado"></p-select>
+    </div>
+
+    <button pButton type="submit" label="Enviar"></button>
+
+  </form>
+</div>

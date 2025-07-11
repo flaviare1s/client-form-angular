@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomerFormComponent } from './customer-form.component';
+import { CustomerFormComponent } from './customer-form';
 
 describe('CustomerFormComponent', () => {
   let component: CustomerFormComponent;
