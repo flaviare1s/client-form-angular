@@ -21,12 +21,21 @@
     <div class="p-field">
       <label for="cpf">CPF</label>
       <p-inputMask mask="999.999.999-99" formControlName="cpf"></p-inputMask>
+      <small *ngIf="customerForm.get('cpf')?.touched && customerForm.get('cpf')?.invalid">
+        CPF é obrigatório para Brasil.
+      </small>
     </div>
 
     <div class="p-field">
       <label for="birthDate">Data de Nascimento</label>
       <p-datepicker id="birthDate" formControlName="birthDate" showIcon dateFormat="dd/mm/yy"
         [maxDate]="today"></p-datepicker>
+      <small *ngIf="customerForm.get('birthDate')?.touched && customerForm.get('birthDate')?.hasError('required')">
+        Campo obrigatório.
+      </small>
+      <small *ngIf="customerForm.get('birthDate')?.touched && customerForm.get('birthDate')?.hasError('max')">
+        Data inválida.
+      </small>
     </div>
 
     <div class="p-field">
@@ -44,12 +53,18 @@
       <label for="country">País</label>
       <p-select id="country" formControlName="country" [options]="countries" optionLabel="name" optionValue="code"
         placeholder="Selecione o país"></p-select>
+      <small *ngIf="customerForm.get('country')?.touched && customerForm.get('country')?.hasError('required')">
+        Campo obrigatório.
+      </small>
     </div>
 
     <div class="p-field">
       <label for="state">Estado</label>
       <p-select id="state" formControlName="state" [options]="statesList" optionLabel="name" optionValue="code"
         placeholder="Selecione o estado"></p-select>
+      <small *ngIf="customerForm.get('state')?.touched && customerForm.get('state')?.hasError('required')">
+        Campo obrigatório.
+      </small>
     </div>
 
     <button pButton type="submit" label="Enviar"></button>

@@ -85,6 +85,16 @@ export class CustomerFormComponent implements OnInit {
   onSubmit(): void {
     if (this.customerForm.valid) {
       console.log('Cliente salvo:', this.customerForm.value);
+      this.customerForm.reset({
+        name: '',
+        email: '',
+        cpf: '',
+        birthDate: '',
+        phone: '',
+        contactType: '',
+        country: '',
+        state: '',
+      });
     } else {
       this.customerForm.markAllAsTouched();
     }
