@@ -1,0 +1,26 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "João Silva",
+      "email": "joao@example.com",
+      "cpf": "123.456.789-00",
+      "birthDate": "1990-01-01",
+      "phone": "(11) 99999-9999",
+      "contactType": "Whatsapp",
+      "country": "BR",
+      "state": "SP"
+    },
+    {
+      "id": 2,
+      "name": "Maria Souza",
+      "email": "maria@example.com",
+      "cpf": "987.654.321-00",
+      "birthDate": "1985-05-05",
+      "phone": "(21) 98888-8888",
+      "contactType": "Whatsapp",
+      "country": "BR",
+      "state": "RJ"
+    }
+  ]
+}

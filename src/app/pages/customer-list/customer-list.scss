@@ -1,0 +1,102 @@
+.customer-list-container {
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+  }
+}
+
+::ng-deep .p-datatable-tbody>tr>td:nth-child(3),
+// CPF
+::ng-deep .p-datatable-thead>tr>th:nth-child(3),
+
+::ng-deep .p-datatable-tbody>tr>td:nth-child(4),
+// Nascimento
+::ng-deep .p-datatable-thead>tr>th:nth-child(4),
+
+::ng-deep .p-datatable-tbody>tr>td:nth-child(5),
+// Telefone
+::ng-deep .p-datatable-thead>tr>th:nth-child(5),
+
+::ng-deep .p-datatable-tbody>tr>td:nth-child(6),
+// Tipo Contato
+::ng-deep .p-datatable-thead>tr>th:nth-child(6),
+
+::ng-deep .p-datatable-tbody>tr>td:nth-child(7),
+// País
+::ng-deep .p-datatable-thead>tr>th:nth-child(7),
+
+::ng-deep .p-datatable-tbody>tr>td:nth-child(8),
+// Estado
+::ng-deep .p-datatable-thead>tr>th:nth-child(8) {
+  display: none;
+}
+
+::ng-deep .p-datatable table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+::ng-deep .p-button {
+  min-width: 2rem;
+  height: 2rem;
+  margin-right: 0.25rem;
+}
+
+/* Breakpoint 600px – mostra TELEFONE */
+@media (min-width: 600px) {
+  .customer-list-container .filters {
+    flex-direction: row;
+    gap: 1rem;
+
+    input {
+      width: auto;
+      flex: 1;
+    }
+  }
+
+  ::ng-deep .p-datatable-tbody > tr > td:nth-child(5),
+  ::ng-deep .p-datatable-thead > tr > th:nth-child(5) {
+    display: table-cell !important;
+  }
+}
+
+/* Breakpoint 700px – mostra CPF */
+@media (min-width: 700px) {
+  ::ng-deep .p-datatable-tbody > tr > td:nth-child(3),
+  ::ng-deep .p-datatable-thead > tr > th:nth-child(3) {
+    display: table-cell !important;
+  }
+}
+
+/* Breakpoint 800px – mostra Data de Nascimento */
+@media (min-width: 800px) {
+  ::ng-deep .p-datatable-tbody > tr > td:nth-child(4),
+  ::ng-deep .p-datatable-thead > tr > th:nth-child(4) {
+    display: table-cell !important;
+  }
+}
+
+/* Breakpoint 900px – mostra Tipo de Contato */
+@media (min-width: 900px) {
+  ::ng-deep .p-datatable-tbody > tr > td:nth-child(6),
+  ::ng-deep .p-datatable-thead > tr > th:nth-child(6),
+  ::ng-deep .p-datatable-tbody > tr > td:nth-child(7),
+  ::ng-deep .p-datatable-thead > tr > th:nth-child(7),
+  ::ng-deep .p-datatable-tbody > tr > td:nth-child(8),
+  ::ng-deep .p-datatable-thead > tr > th:nth-child(8) {
+    display: table-cell !important;
+  }
+}
