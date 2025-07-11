@@ -17,6 +17,15 @@
   }
 }
 
+ ::ng-deep .p-paginator {
+   margin-top: 1rem;
+   justify-content: center;
+ }
+
+ ::ng-deep .p-datatable-tbody>tr>td:nth-child(1),
+ // Nome
+ ::ng-deep .p-datatable-thead>tr>th:nth-child(1),
+
 ::ng-deep .p-datatable-tbody>tr>td:nth-child(3),
 // CPF
 ::ng-deep .p-datatable-thead>tr>th:nth-child(3),
@@ -55,6 +64,23 @@
   margin-right: 0.25rem;
 }
 
+/* Breakpoint 500px – mostra Nome*/
+@media (min-width: 500px) {
+  .customer-list-container .filters {
+    flex-direction: row;
+    gap: 1rem;
+
+    input {
+      width: auto;
+      flex: 1;
+    }
+  }
+  ::ng-deep .p-datatable-tbody>tr>td:nth-child(1),
+  ::ng-deep .p-datatable-thead>tr>th:nth-child(1) {
+    display: table-cell !important;
+  }
+}
+
 /* Breakpoint 600px – mostra TELEFONE */
 @media (min-width: 600px) {
   .customer-list-container .filters {
@@ -66,7 +92,6 @@
       flex: 1;
     }
   }
-
   ::ng-deep .p-datatable-tbody > tr > td:nth-child(5),
   ::ng-deep .p-datatable-thead > tr > th:nth-child(5) {
     display: table-cell !important;
