@@ -6,7 +6,7 @@
   </div>
 
   <p-table [value]="customers" [paginator]="true" [rows]="limit" [totalRecords]="totalRecords"
-    (onPage)="onPageChange($event)" [loading]="loading">
+    [loading]="loading">
     <ng-template pTemplate="header">
       <tr>
         <th>Nome</th>

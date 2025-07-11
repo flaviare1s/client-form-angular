@@ -1,6 +1,6 @@
 .customer-list-container {
   padding: 1rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   .filters {
     display: flex;
@@ -17,12 +17,55 @@
   }
 }
 
- ::ng-deep .p-paginator {
-   margin-top: 1rem;
-   justify-content: center;
- }
+::ng-deep .p-paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem 0;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+  border-radius: 0 0 8px 8px;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
 
- ::ng-deep .p-datatable-tbody>tr>td:nth-child(1),
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 0.4rem 0.75rem;
+  margin: 0 0.1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: #007ad9;
+  border-color: #007ad9;
+  color: white;
+  font-weight: bold;
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:hover {
+  background-color: #e0e0e0;
+}
+
+::ng-deep .p-paginator .p-paginator-icon {
+  font-size: 1rem;
+  color: #555;
+  transition: color 0.2s ease;
+  padding: 0.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+::ng-deep .p-paginator .p-paginator-icon:hover {
+  background-color: #eaeaea;
+}
+
+::ng-deep .p-datatable-tbody>tr>td:nth-child(1),
  // Nome
  ::ng-deep .p-datatable-thead>tr>th:nth-child(1),
 
@@ -75,8 +118,8 @@
       flex: 1;
     }
   }
-  ::ng-deep .p-datatable-tbody>tr>td:nth-child(1),
-  ::ng-deep .p-datatable-thead>tr>th:nth-child(1) {
+  ::ng-deep .p-datatable-tbody > tr > td:nth-child(1),
+  ::ng-deep .p-datatable-thead > tr > th:nth-child(1) {
     display: table-cell !important;
   }
 }

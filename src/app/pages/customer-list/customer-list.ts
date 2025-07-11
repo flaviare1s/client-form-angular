@@ -20,7 +20,6 @@ export class CustomerList implements OnInit {
   filterName = '';
   filterState = '';
 
-  page = 1;
   limit = 10;
 
   constructor(private customerService: CustomerService) {}
@@ -31,22 +30,27 @@ export class CustomerList implements OnInit {
 
   loadCustomers(): void {
     this.loading = true;
-    this.customerService
-      .getCustomers(this.filterName, this.filterState, this.page, this.limit)
-      .subscribe((res) => {
-        this.customers = res.customers;
-        this.totalRecords = res.total;
-        this.loading = false;
-      });
-  }
-
-  onPageChange(event: any) {
-    this.page = event.page + 1;
-    this.loadCustomers();
+    this.customerService.getAllCustomers().subscribe((customers) => {
+      this.customers = customers;
+      this.totalRecords = customers.length;
+      this.loading = false;
+    });
   }
 
   onFilterChange(): void {
-    this.page = 1;
-    this.loadCustomers();
+    this.loading = true;
+    this.customerService.getAllCustomers().subscribe((customers) => {
+      const name = this.filterName.toLowerCase();
+      const state = this.filterState.toLowerCase();
+
+      this.customers = customers.filter(
+        (c) =>
+          (!name || c.name.toLowerCase().includes(name)) &&
+          (!state || c.state.toLowerCase().includes(state))
+      );
+
+      this.totalRecords = this.customers.length;
+      this.loading = false;
+    });
   }
 }
