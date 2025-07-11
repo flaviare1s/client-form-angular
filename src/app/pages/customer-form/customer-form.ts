@@ -8,6 +8,7 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { SelectModule } from 'primeng/select';
 import { ButtonModule } from 'primeng/button';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ValidPhoneDirective } from '../../directives/valid-phone.directive';
 
 @Component({
   selector: 'app-customer-form',
@@ -23,6 +24,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     DatePickerModule,
     SelectModule,
     ButtonModule,
+    ValidPhoneDirective,
   ],
 })
 export class CustomerFormComponent implements OnInit {
@@ -35,6 +37,7 @@ export class CustomerFormComponent implements OnInit {
   statesList: { name: string; code: string }[] = [];
   today: Date = new Date();
   contactMask: string = '';
+
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.customerForm = this.fb.group({
@@ -76,9 +79,15 @@ export class CustomerFormComponent implements OnInit {
       ?.valueChanges.subscribe((type: string) => {
         if (type === 'Whatsapp' || type === 'Celular') {
           this.contactMask = '(99) 99999-9999';
-        } else {
+        } else if (type === 'Fixo' || type === 'Residencial') {
           this.contactMask = '(99) 9999-9999';
+        } else {
+          this.contactMask = '';
         }
+        
+        const phoneControl = this.customerForm.get('phone');
+        const currentValue = phoneControl?.value;
+        phoneControl?.setValue(currentValue);
       });
   }
 

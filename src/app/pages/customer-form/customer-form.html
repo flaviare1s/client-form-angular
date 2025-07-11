@@ -40,8 +40,17 @@
 
     <div class="p-field">
       <label for="phone">Telefone</label>
-      <p-inputMask formControlName="phone" mask="(99) 99999-9999"></p-inputMask>
+      <p-inputMask [mask]="contactMask">
+        <ng-template pInputMask>
+          <input type="text" formControlName="phone" appValidPhone [contactType]="customerForm.get('contactType')?.value" />
+        </ng-template>
+      </p-inputMask>
+
+      <small *ngIf="customerForm.get('phone')?.touched && customerForm.get('phone')?.hasError('invalidPhone')">
+        Telefone inválido para o tipo de contato selecionado.
+      </small>
     </div>
+
 
     <div class="p-field">
       <label for="contactType">Tipo de Contato</label>
