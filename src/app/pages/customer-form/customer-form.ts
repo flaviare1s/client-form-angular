@@ -10,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ValidPhoneDirective } from '../../directives/valid-phone.directive';
 import { CustomerService, Customer } from '../../services/customer';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-customer-form',
@@ -39,12 +39,15 @@ export class CustomerFormComponent implements OnInit {
   statesList: { name: string; code: string }[] = [];
   today: Date = new Date();
   contactMask: string = '';
+  editMode = false;
+  customerId: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private customerService: CustomerService,
-    private router: Router
+    public router: Router,
+    private route: ActivatedRoute
   ) {
     this.customerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -63,6 +66,20 @@ export class CustomerFormComponent implements OnInit {
       this.countries = data;
     });
 
+    this.customerId = this.route.snapshot.paramMap.get('id');
+    this.editMode = !!this.customerId;
+
+    if (this.editMode && this.customerId) {
+      this.customerService
+        .getCustomerById(this.customerId)
+        .subscribe((customer) => {
+          this.customerForm.patchValue({
+            ...customer,
+            birthDate: new Date(customer.birthDate),
+          });
+        });
+    }
+
     this.onFormChanges();
   }
 
@@ -76,7 +93,6 @@ export class CustomerFormComponent implements OnInit {
       } else {
         this.customerForm.get('cpf')?.clearValidators();
       }
-
       this.customerForm.get('cpf')?.updateValueAndValidity();
     });
 
@@ -101,10 +117,19 @@ export class CustomerFormComponent implements OnInit {
     if (this.customerForm.valid) {
       const customer: Customer = this.customerForm.value;
 
-      this.customerService.addCustomer(customer).subscribe(() => {
-        alert('Cliente adicionado com sucesso!');
-        this.router.navigate(['/']);
-      });
+      if (this.editMode && this.customerId) {
+        this.customerService
+          .updateCustomer(this.customerId, customer)
+          .subscribe(() => {
+            alert('Cliente atualizado com sucesso!');
+            this.router.navigate(['/']);
+          });
+      } else {
+        this.customerService.addCustomer(customer).subscribe(() => {
+          alert('Cliente adicionado com sucesso!');
+          this.router.navigate(['/']);
+        });
+      }
     } else {
       alert('Por favor, preencha todos os campos obrigatórios.');
       this.customerForm.markAllAsTouched();

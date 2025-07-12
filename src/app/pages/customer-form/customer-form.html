@@ -1,4 +1,7 @@
 <div class="container">
+  <button pButton type="button" label="Voltar para Home" icon="pi pi-arrow-left" class="custom-back-button"
+    (click)="router.navigate(['/'])"></button>
+
   <h2>Cadastro de Clientes</h2>
   <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" class="p-fluid">
 
@@ -6,7 +9,7 @@
       <label for="name">Nome</label>
       <input pInputText id="name" formControlName="name" />
       <small *ngIf="customerForm.get('name')?.touched && customerForm.get('name')?.invalid">
-        Name is required (min 3 characters).
+        O nome deve ter pelo menos 3 caracteres.
       </small>
     </div>
 
@@ -14,7 +17,7 @@
       <label for="email">Email</label>
       <input pInputText id="email" type="email" formControlName="email" />
       <small *ngIf="customerForm.get('email')?.touched && customerForm.get('email')?.invalid">
-        Valid email required.
+        Insira um email válido.
       </small>
     </div>
 
@@ -76,7 +79,7 @@
       </small>
     </div>
 
-    <button pButton type="submit" label="Enviar"></button>
+    <button pButton type="submit" [label]="editMode ? 'Atualizar' : 'Enviar'"></button>
 
   </form>
 </div>

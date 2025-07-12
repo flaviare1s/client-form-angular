@@ -1,15 +1,15 @@
 {
   "customers": [
     {
-      "id": "1",
       "name": "João Silva",
-      "email": "joao@example.com",
+      "email": "joao2@example.com",
       "cpf": "123.456.789-00",
-      "birthDate": "1990-01-01",
-      "phone": "(11) 99999-9999",
+      "birthDate": "1990-01-01T00:00:00.000Z",
+      "phone": "",
       "contactType": "Whatsapp",
       "country": "BR",
-      "state": "SP"
+      "state": "SP",
+      "id": "1"
     },
     {
       "id": "2",

@@ -59,7 +59,8 @@ export class CustomerList implements OnInit {
   }
 
   onEdit(customer: Customer): void {
-    console.log('Editar cliente:', customer);
+    console.log('Editar ID:', customer.id);
+    this.router.navigate(['/customers/edit', customer.id]);
   }
 
   onDelete(customer: Customer): void {
@@ -72,6 +73,6 @@ export class CustomerList implements OnInit {
   }
 
   onNewCustomer(): void {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/customers/new']);
   }
 }
