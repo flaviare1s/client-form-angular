@@ -1,4 +1,6 @@
-# CRUD de clientes com Angular
+# Customers App com Angular
+
+## CRUD de clientes
 
 ## Tecnologias Utilizadas
 
@@ -37,3 +39,4 @@ npm start
 5. Acesse a aplicação no navegador em:
 
 - http://localhost:4200
+ 
