@@ -9,6 +9,8 @@ import { SelectModule } from 'primeng/select';
 import { ButtonModule } from 'primeng/button';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ValidPhoneDirective } from '../../directives/valid-phone.directive';
+import { CustomerService, Customer } from '../../services/customer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-form',
@@ -38,8 +40,12 @@ export class CustomerFormComponent implements OnInit {
   today: Date = new Date();
   contactMask: string = '';
 
-
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private customerService: CustomerService,
+    private router: Router
+  ) {
     this.customerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -84,7 +90,7 @@ export class CustomerFormComponent implements OnInit {
         } else {
           this.contactMask = '';
         }
-        
+
         const phoneControl = this.customerForm.get('phone');
         const currentValue = phoneControl?.value;
         phoneControl?.setValue(currentValue);
@@ -93,18 +99,14 @@ export class CustomerFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.customerForm.valid) {
-      console.log('Cliente salvo:', this.customerForm.value);
-      this.customerForm.reset({
-        name: '',
-        email: '',
-        cpf: '',
-        birthDate: '',
-        phone: '',
-        contactType: '',
-        country: '',
-        state: '',
+      const customer: Customer = this.customerForm.value;
+
+      this.customerService.addCustomer(customer).subscribe(() => {
+        alert('Cliente adicionado com sucesso!');
+        this.router.navigate(['/clients']);
       });
     } else {
+      alert('Por favor, preencha todos os campos obrigatórios.');
       this.customerForm.markAllAsTouched();
     }
   }
