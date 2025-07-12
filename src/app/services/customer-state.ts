@@ -4,7 +4,6 @@ import { BehaviorSubject } from 'rxjs';
 export interface CustomerFilterState {
   name: string;
   state: string;
-  page: number;
 }
 
 const STORAGE_KEY = 'customerFilterState';
@@ -14,7 +13,6 @@ export class CustomerStateService {
   private _initialState: CustomerFilterState = {
     name: '',
     state: '',
-    page: 1,
   };
 
   private _stateSubject = new BehaviorSubject<CustomerFilterState>(

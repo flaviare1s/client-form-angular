@@ -38,7 +38,7 @@ export class CustomerList implements OnInit {
     });
   }
 
-  loadCustomers(page?: number): void {
+  loadCustomers(): void {
     this.loading = true;
     this.customerService.getAllCustomers().subscribe((customers) => {
       this.customers = customers;
@@ -68,7 +68,6 @@ export class CustomerList implements OnInit {
     this.customerStateService.updateState({
       name: this.filterName,
       state: this.filterState,
-      page: 1,
     });
 
     this.applyFilters();
