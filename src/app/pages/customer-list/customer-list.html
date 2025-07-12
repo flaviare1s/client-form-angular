@@ -32,9 +32,12 @@
         <td>{{ customer.country }}</td>
         <td>{{ customer.state }}</td>
         <td>
-          <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-          <button pButton type="button" icon="pi pi-trash"
-            class="p-button-rounded p-button-text p-button-danger"></button>
+          <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-sm"
+            (click)="onEdit(customer)">
+          </button>
+          <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-sm p-button-danger"
+            (click)="onDelete(customer)">
+          </button>
         </td>
       </tr>
     </ng-template>

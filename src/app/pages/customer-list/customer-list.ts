@@ -53,4 +53,17 @@ export class CustomerList implements OnInit {
       this.loading = false;
     });
   }
+
+  onEdit(customer: Customer): void {
+    console.log('Editar cliente:', customer);
+  }
+
+  onDelete(customer: Customer): void {
+    console.log('Deletar ID:', customer.id);
+    if (confirm(`Deseja remover o cliente ${customer.name}?`)) {
+      this.customerService.deleteCustomer(customer.id).subscribe(() => {
+        this.loadCustomers();
+      });
+    }
+  }
 }

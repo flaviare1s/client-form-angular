@@ -25,4 +25,8 @@ export class CustomerService {
   getAllCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(this.apiUrl);
   }
+
+  deleteCustomer(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }
