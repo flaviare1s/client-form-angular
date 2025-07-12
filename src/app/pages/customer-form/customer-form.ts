@@ -103,7 +103,7 @@ export class CustomerFormComponent implements OnInit {
 
       this.customerService.addCustomer(customer).subscribe(() => {
         alert('Cliente adicionado com sucesso!');
-        this.router.navigate(['/clients']);
+        this.router.navigate(['/']);
       });
     } else {
       alert('Por favor, preencha todos os campos obrigatórios.');

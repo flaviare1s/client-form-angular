@@ -252,6 +252,17 @@
       "contactType": "Whatsapp",
       "country": "BR",
       "state": "RJ"
+    },
+    {
+      "id": "6f80",
+      "name": "Paulo Rocha",
+      "email": "paulo@teste.com",
+      "cpf": "122.222.222-22",
+      "birthDate": "2025-07-01T03:00:00.000Z",
+      "phone": "",
+      "contactType": "Whatsapp",
+      "country": "BR",
+      "state": "PR"
     }
   ]
 }

@@ -40,7 +40,7 @@
 
     <div class="p-field">
       <label for="phone">Telefone</label>
-      <p-inputMask [mask]="contactMask">
+      <p-inputMask [mask]="contactMask" formControlName="phone" appValidPhone [contactType]="customerForm.get('contactType')?.value">
         <ng-template pInputMask>
           <input type="text" formControlName="phone" appValidPhone [contactType]="customerForm.get('contactType')?.value" />
         </ng-template>
