@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
+import { CustomerStateService } from '../../services/customer-state';
 
 @Component({
   selector: 'app-customer-list',
@@ -25,14 +26,19 @@ export class CustomerList implements OnInit {
 
   constructor(
     private customerService: CustomerService,
-    private router: Router
+    private router: Router,
+    private customerStateService: CustomerStateService
   ) {}
 
   ngOnInit(): void {
-    this.loadCustomers();
+    this.customerStateService.state$.subscribe((state) => {
+      this.filterName = state.name;
+      this.filterState = state.state;
+      this.applyFilters();
+    });
   }
 
-  loadCustomers(): void {
+  loadCustomers(page?: number): void {
     this.loading = true;
     this.customerService.getAllCustomers().subscribe((customers) => {
       this.customers = customers;
@@ -41,12 +47,12 @@ export class CustomerList implements OnInit {
     });
   }
 
-  onFilterChange(): void {
+  applyFilters(): void {
+    const name = this.filterName.toLowerCase();
+    const state = this.filterState.toLowerCase();
+
     this.loading = true;
     this.customerService.getAllCustomers().subscribe((customers) => {
-      const name = this.filterName.toLowerCase();
-      const state = this.filterState.toLowerCase();
-
       this.customers = customers.filter(
         (c) =>
           (!name || c.name.toLowerCase().includes(name)) &&
@@ -56,6 +62,16 @@ export class CustomerList implements OnInit {
       this.totalRecords = this.customers.length;
       this.loading = false;
     });
+  }
+
+  onFilterChange(): void {
+    this.customerStateService.updateState({
+      name: this.filterName,
+      state: this.filterState,
+      page: 1,
+    });
+
+    this.applyFilters();
   }
 
   onEdit(customer: Customer): void {
