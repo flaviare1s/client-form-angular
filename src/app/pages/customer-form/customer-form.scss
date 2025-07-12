@@ -6,10 +6,11 @@
   margin: 0 auto;
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
-h2 {
-  text-align: center;
+  h2 {
+      text-align: center;
+      font-size: 1.4rem;
+    }
 }
 
 form.p-fluid {
@@ -112,6 +113,10 @@ form.p-fluid {
 @media (min-width: 600px) {
   .container {
     width: 550px;
+
+    h2 {
+      font-size: 1.8rem;
+    }
   }
   form.p-fluid {
     margin: 2rem auto;

@@ -4,6 +4,7 @@ import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-list',
@@ -22,7 +23,10 @@ export class CustomerList implements OnInit {
 
   limit = 10;
 
-  constructor(private customerService: CustomerService) {}
+  constructor(
+    private customerService: CustomerService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadCustomers();
@@ -65,5 +69,9 @@ export class CustomerList implements OnInit {
         this.loadCustomers();
       });
     }
+  }
+
+  onNewCustomer(): void {
+    this.router.navigate(['/register']);
   }
 }

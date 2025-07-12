@@ -1,5 +1,12 @@
 <div class="customer-list-container">
 
+  <div class="header-and-button"
+    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+    <h2>Lista de Clientes</h2>
+    <button pButton type="button" label="Novo Cliente" icon="pi pi-plus" class="p-button-success"
+      (click)="onNewCustomer()"></button>
+  </div>
+
   <div class="filters">
     <input type="text" [(ngModel)]="filterName" (input)="onFilterChange()" placeholder="Filtrar por nome" />
     <input type="text" [(ngModel)]="filterState" (input)="onFilterChange()" placeholder="Filtrar por estado" />
