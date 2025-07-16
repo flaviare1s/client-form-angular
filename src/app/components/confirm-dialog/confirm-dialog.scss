@@ -1,0 +1,29 @@
+:host ::ng-deep .p-dialog {
+  background-color: white !important;
+  border: 1px solid #ccc !important;
+  padding: 20px !important;
+  border-radius: 10px !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-footer {
+  justify-content: flex-end;
+}
+
+button {
+  background-color: #666 !important;
+  border-color: #666 !important;
+  color: #eee !important;
+  font-weight: 600;
+  padding: 1rem 0.8rem;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: #444 !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}

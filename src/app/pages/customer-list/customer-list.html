@@ -51,3 +51,7 @@
   </p-table>
 
 </div>
+
+<app-confirm-dialog [visible]="showDialog" [title]="'Confirmar remoção'"
+  [message]="'Deseja realmente remover o cliente ' + selectedCustomer?.name + '?'" (confirm)="confirmDelete()"
+  (cancel)="showDialog = false"></app-confirm-dialog>

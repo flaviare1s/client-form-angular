@@ -6,13 +6,21 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
 import { CustomerStateService } from '../../services/customer-state';
+import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog';
+
 
 @Component({
   selector: 'app-customer-list',
   standalone: true,
   templateUrl: './customer-list.html',
   styleUrls: ['./customer-list.scss'],
-  imports: [CommonModule, TableModule, FormsModule, ButtonModule],
+  imports: [
+    CommonModule,
+    TableModule,
+    FormsModule,
+    ButtonModule,
+    ConfirmDialogComponent,
+  ],
 })
 export class CustomerList implements OnInit {
   customers: Customer[] = [];
@@ -23,6 +31,9 @@ export class CustomerList implements OnInit {
   filterState = '';
 
   limit = 10;
+
+  showDialog = false;
+  selectedCustomer: Customer | null = null;
 
   constructor(
     private customerService: CustomerService,
@@ -79,11 +90,18 @@ export class CustomerList implements OnInit {
   }
 
   onDelete(customer: Customer): void {
-    console.log('Deletar ID:', customer.id);
-    if (confirm(`Deseja remover o cliente ${customer.name}?`)) {
-      this.customerService.deleteCustomer(customer.id).subscribe(() => {
-        this.loadCustomers();
-      });
+    this.selectedCustomer = customer;
+    this.showDialog = true;
+  }
+
+  confirmDelete(): void {
+    if (this.selectedCustomer) {
+      this.customerService
+        .deleteCustomer(this.selectedCustomer.id)
+        .subscribe(() => {
+          this.loadCustomers();
+          this.showDialog = false;
+        });
     }
   }
 

@@ -1,0 +1,7 @@
+<p-dialog [(visible)]="visible" [modal]="true" [header]="title" [closable]="false" [style]="{ width: '350px' }">
+  <p>{{ message }}</p>
+  <div class="dialog-footer" style="display: flex; justify-content: flex-end; gap: 1rem;">
+    <button pButton type="button" label="Cancelar" class="p-button-text" (click)="onCancel()"></button>
+    <button pButton type="button" label="Confirmar" class="p-button-danger" (click)="onConfirm()"></button>
+  </div>
+</p-dialog>
