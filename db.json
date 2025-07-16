@@ -2,7 +2,7 @@
   "customers": [
     {
       "name": "João Silva",
-      "email": "joao2@example.com",
+      "email": "joao23@example.com",
       "cpf": "123.456.789-00",
       "birthDate": "1990-01-01T00:00:00.000Z",
       "phone": "",
@@ -100,15 +100,15 @@
       "state": "RS"
     },
     {
-      "id": "10",
-      "name": "Giovanna Costa",
+      "name": "Giovanna Costa da Silva",
       "email": "giovanna@example.com",
       "cpf": "444.555.666-77",
-      "birthDate": "2000-01-30",
-      "phone": "(71) 98765-4321",
+      "birthDate": "2000-01-30T00:00:00.000Z",
+      "phone": "",
       "contactType": "Fixo",
       "country": "BR",
-      "state": "BA"
+      "state": "BA",
+      "id": "10"
     },
     {
       "id": "11",
@@ -263,6 +263,17 @@
       "contactType": "Whatsapp",
       "country": "BR",
       "state": "PR"
+    },
+    {
+      "name": "Flávia Reis de Almeidas",
+      "email": "flaviarster@gmail.com",
+      "cpf": "",
+      "birthDate": "2025-07-01T03:00:00.000Z",
+      "phone": "",
+      "contactType": "",
+      "country": "US",
+      "state": "AL",
+      "id": "0e3b"
     }
   ]
 }

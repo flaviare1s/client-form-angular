@@ -11,6 +11,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ValidPhoneDirective } from '../../directives/valid-phone.directive';
 import { CustomerService, Customer } from '../../services/customer';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-customer-form',
@@ -26,7 +27,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     DatePickerModule,
     SelectModule,
     ButtonModule,
-    ValidPhoneDirective,
+    ValidPhoneDirective
   ],
 })
 export class CustomerFormComponent implements OnInit {
@@ -47,7 +48,8 @@ export class CustomerFormComponent implements OnInit {
     private http: HttpClient,
     private customerService: CustomerService,
     public router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService: MessageService
   ) {
     this.customerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -121,17 +123,29 @@ export class CustomerFormComponent implements OnInit {
         this.customerService
           .updateCustomer(this.customerId, customer)
           .subscribe(() => {
-            alert('Cliente atualizado com sucesso!');
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Sucesso',
+              detail: 'Cliente atualizado com sucesso!',
+            });
             this.router.navigate(['/']);
           });
       } else {
         this.customerService.addCustomer(customer).subscribe(() => {
-          alert('Cliente adicionado com sucesso!');
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Sucesso',
+            detail: 'Cliente adicionado com sucesso!',
+          });
           this.router.navigate(['/']);
         });
       }
     } else {
-      alert('Por favor, preencha todos os campos obrigatórios.');
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erro',
+        detail: 'Preencha todos os campos corretamente!',
+      });
       this.customerForm.markAllAsTouched();
     }
   }
